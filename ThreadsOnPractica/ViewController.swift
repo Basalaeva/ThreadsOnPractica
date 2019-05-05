@@ -90,6 +90,7 @@ class ViewController: UITableViewController {
         }
         
         let dataTaskCompletionHandler: (URL?, URLResponse?, Error?) -> Void = { fileURL, response, error in
+            cell.shutDownActivityIndicator()
             guard let fileURL = fileURL,
                 let response = response as? HTTPURLResponse,
                 response.statusCode == 200 else {
@@ -145,6 +146,10 @@ class TableCell: UITableViewCell {
     
     func setNewCellNumber(newValue: Int) {
         currentCellNumber = newValue
+    }
+    
+    func shutDownActivityIndicator() {
+        self.cellActivityIndicator.stopAnimating()
     }
     
     func getCurrentIndex() -> Int {
