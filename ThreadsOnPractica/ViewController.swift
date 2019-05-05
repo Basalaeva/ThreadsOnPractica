@@ -123,6 +123,8 @@ class ViewController: UITableViewController {
         dataTasks[dataTaskNumber]?.cancel { [weak self] (resumeData) in
             if let resumeData = resumeData {
                 self?.dataTasks[dataTaskNumber] = self?.defaultSession.downloadTask(withResumeData: resumeData, completionHandler: dataTaskCompletionHandler)
+            } else {
+                self?.dataTasks[dataTaskNumber] = nil
             }
         }
     }
